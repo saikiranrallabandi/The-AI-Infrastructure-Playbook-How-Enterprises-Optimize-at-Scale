@@ -321,6 +321,10 @@ def create_risk_architecture():
     draw_box(0.3, 6.8, 2, 0.7, 'Orders', COLORS['info'])
     draw_box(0.3, 6.0, 2, 0.7, 'Trades', COLORS['info'])
 
+    # Draw arrow from Trades to Risk Calculations
+    ax.annotate('', xy=(3, 5.8), xytext=(2.3, 6.3),
+               arrowprops=dict(arrowstyle='->', color=COLORS['dark'], alpha=0.4))
+
     # Pre-Trade Risk (Fast Path) - header above box
     ax.text(4.75, 9.9, 'Pre-Trade Risk', fontsize=10, fontweight='bold', ha='center', color=COLORS['success'])
     ax.text(4.75, 9.6, '(<1ms)', fontsize=9, ha='center', color=COLORS['success'])
@@ -336,25 +340,25 @@ def create_risk_architecture():
     ax.text(12.35, 9.6, '(minutes)', fontsize=9, ha='center', color=COLORS['warning'])
     draw_box(11, 8.1, 2.7, 1.3, 'VaR/Stress', COLORS['warning'], 'Monte Carlo')
 
-    # Risk Calculations
-    ax.text(3, 6.5, 'Risk Calculations', fontsize=11, fontweight='bold')
+    # Risk Calculations - header centered above boxes
+    ax.text(6.5, 6.4, 'Risk Calculations', fontsize=10, fontweight='bold', ha='center')
     calcs = [
-        ('Limit Check', 3, 5.6, COLORS['success']),
-        ('Margin Calc', 5.5, 5.6, COLORS['primary']),
-        ('Greeks', 8, 5.6, COLORS['primary']),
-        ('VaR', 10.5, 5.6, COLORS['warning'])
+        ('Limit Check', 3, 5.4, COLORS['success']),
+        ('Margin Calc', 5.5, 5.4, COLORS['primary']),
+        ('Greeks', 8, 5.4, COLORS['primary']),
+        ('VaR', 10.5, 5.4, COLORS['warning'])
     ]
     for name, x, y, color in calcs:
         draw_box(x, y, 2.2, 0.8, name, color)
 
     # Compute Infrastructure
-    ax.text(3, 4.6, 'Compute', fontsize=11, fontweight='bold')
-    draw_box(3, 3.8, 3, 0.9, 'CPU Cluster', COLORS['dark'], 'Pre-trade, positions')
-    draw_box(6.5, 3.8, 3, 0.9, 'GPU Cluster', COLORS['dark'], 'Monte Carlo, ML')
-    draw_box(10, 3.8, 3, 0.9, 'FPGA', COLORS['dark'], 'Ultra-low latency')
+    ax.text(0.3, 4.4, 'Compute', fontsize=10, fontweight='bold')
+    draw_box(3, 3.6, 3, 0.9, 'CPU Cluster', COLORS['dark'], 'Pre-trade, positions')
+    draw_box(6.5, 3.6, 3, 0.9, 'GPU Cluster', COLORS['dark'], 'Monte Carlo, ML')
+    draw_box(10, 3.6, 3, 0.9, 'FPGA', COLORS['dark'], 'Ultra-low latency')
 
     # Outputs
-    ax.text(3, 2.8, 'Outputs', fontsize=11, fontweight='bold')
+    ax.text(0.3, 2.6, 'Outputs', fontsize=10, fontweight='bold')
     outputs = [
         ('Alerts', 3, COLORS['accent']),
         ('Reports', 5.5, COLORS['info']),
@@ -362,7 +366,7 @@ def create_risk_architecture():
         ('Regulatory', 10.5, COLORS['accent'])
     ]
     for name, x, color in outputs:
-        draw_box(x, 2.0, 2.2, 0.8, name, color)
+        draw_box(x, 1.8, 2.2, 0.8, name, color)
 
     # Flow arrows from data sources
     for y in [8.7, 7.9, 7.1, 6.3]:
