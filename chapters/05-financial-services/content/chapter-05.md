@@ -771,6 +771,8 @@ A traditional bank launching a digital-first subsidiary with requirements:
 - **Compliance**: Full regulatory compliance from day one
 - **Cost**: 50% lower cost-to-serve than parent bank
 
+The bank faced a critical decision: build on top of the legacy infrastructure or start fresh with a cloud-native architecture. After extensive analysis, they chose a greenfield approach with selective integration points to the parent bank's systems for regulatory reporting and liquidity management.
+
 ### 5.6.2 Architecture Decisions
 
 | Component | Decision | Rationale |
