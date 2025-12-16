@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>chapter-05</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1
+id="chapter-5-financial-services-infrastructure-optimization">Chapter 5:
+Financial Services Infrastructure Optimization</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Financial services infrastructure operates under constraints that
+make it fundamentally different from other industries. Where e-commerce
+optimizes for conversion rates and user experience, financial services
+must optimize for regulatory compliance, ultra-low latency, absolute
+reliability, and complete auditability—often simultaneously. A single
+millisecond of latency in trading systems can cost millions; a single
+compliance violation can result in billions in fines.</p>
+<p>This chapter applies the PROSE Framework to financial services,
+demonstrating how AI-driven optimization can address the unique
+challenges of banking, trading, and insurance infrastructure while
+maintaining the rigorous standards required by regulators.</p>
+<h2 id="the-financial-services-infrastructure-landscape">5.1 The
+Financial Services Infrastructure Landscape</h2>
+<h3 id="unique-constraints">5.1.1 Unique Constraints</h3>
+<p>Financial services infrastructure operates under constraints that
+distinguish it from all other industries:</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 39%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Requirement</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regulatory compliance</td>
+<td>SOX, PCI-DSS, GDPR, MiFID II</td>
+<td>Every change requires audit trail</td>
+</tr>
+<tr>
+<td>Ultra-low latency</td>
+<td>Microsecond-level for trading</td>
+<td>Specialized hardware, co-location</td>
+</tr>
+<tr>
+<td>Zero data loss</td>
+<td>RPO = 0 for transactions</td>
+<td>Synchronous replication</td>
+</tr>
+<tr>
+<td>High availability</td>
+<td>99.999% uptime (5.26 min/year)</td>
+<td>Active-active architectures</td>
+</tr>
+<tr>
+<td>Complete auditability</td>
+<td>7+ year retention</td>
+<td>Immutable logging</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Defense in depth</td>
+<td>Multiple security layers</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="../figures/fig_5_1_requirements_radar.png"
+alt="Figure 5.1: Financial Services Infrastructure Requirements" />
+<figcaption aria-hidden="true">Figure 5.1: Financial Services
+Infrastructure Requirements</figcaption>
+</figure>
+<p><strong>Figure 5.1: Financial Services Infrastructure Requirements by
+Domain</strong></p>
+<h3 id="the-cost-of-failure">5.1.2 The Cost of Failure</h3>
+<p>Infrastructure failures in financial services have consequences
+beyond lost revenue:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 30%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>Failure Type</th>
+<th>Direct Cost</th>
+<th>Indirect Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trading system outage</td>
+<td>$5-10M per hour</td>
+<td>Market confidence, regulatory scrutiny</td>
+</tr>
+<tr>
+<td>Data breach</td>
+<td>$150-400 per record</td>
+<td>Brand damage, customer churn</td>
+</tr>
+<tr>
+<td>Compliance violation</td>
+<td>$10M-$1B in fines</td>
+<td>License risk, executive liability</td>
+</tr>
+<tr>
+<td>Settlement failure</td>
+<td>Transaction value + penalties</td>
+<td>Counterparty relationships</td>
+</tr>
+<tr>
+<td>Audit finding</td>
+<td>Remediation costs</td>
+<td>Increased oversight</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure-domains">5.1.3 Infrastructure Domains</h3>
+<p>Financial services infrastructure spans multiple specialized
+domains:</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 35%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Latency Requirement</th>
+<th>Availability</th>
+<th>Key Challenge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High-Frequency Trading</td>
+<td>&lt; 10 microseconds</td>
+<td>99.99%</td>
+<td>Latency consistency</td>
+</tr>
+<tr>
+<td>Retail Banking</td>
+<td>&lt; 500ms</td>
+<td>99.999%</td>
+<td>Scale + compliance</td>
+</tr>
+<tr>
+<td>Payment Processing</td>
+<td>&lt; 100ms</td>
+<td>99.9999%</td>
+<td>Fraud detection speed</td>
+</tr>
+<tr>
+<td>Risk Management</td>
+<td>&lt; 5 seconds</td>
+<td>99.99%</td>
+<td>Computational intensity</td>
+</tr>
+<tr>
+<td>Regulatory Reporting</td>
+<td>Batch (hours)</td>
+<td>99.9%</td>
+<td>Data completeness</td>
+</tr>
+</tbody>
+</table>
+<h2 id="applying-the-prose-framework-to-financial-services">5.2 Applying
+the PROSE Framework to Financial Services</h2>
+<h3 id="financial-services-prose-weighting">5.2.1 Financial Services
+PROSE Weighting</h3>
+<p>As introduced in Chapter 3, financial services weights the PROSE
+dimensions differently than other industries:</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 26%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Weight</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Performance</td>
+<td>25%</td>
+<td>Critical for trading, important for banking</td>
+</tr>
+<tr>
+<td>Resource Optimization</td>
+<td>15%</td>
+<td>Compliance may require over-provisioning</td>
+</tr>
+<tr>
+<td>Operational Excellence</td>
+<td>30%</td>
+<td>Regulatory requirements, audit trails</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>15%</td>
+<td>More predictable than e-commerce</td>
+</tr>
+<tr>
+<td>Economic Impact</td>
+<td>15%</td>
+<td>Cost matters but reliability is paramount</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-efficiency-in-financial-services">5.2.2 Performance
+Efficiency in Financial Services</h3>
+<p>Performance in financial services means different things across
+domains:</p>
+<p><strong>Trading Systems Performance:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Measurement Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order-to-execution</td>
+<td>&lt; 50 microseconds</td>
+<td>Hardware timestamping</td>
+</tr>
+<tr>
+<td>Market data processing</td>
+<td>&lt; 5 microseconds</td>
+<td>FPGA-based measurement</td>
+</tr>
+<tr>
+<td>Risk calculation</td>
+<td>&lt; 1 millisecond</td>
+<td>End-to-end tracing</td>
+</tr>
+<tr>
+<td>Tick-to-trade</td>
+<td>&lt; 100 microseconds</td>
+<td>Co-located measurement</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Banking Systems Performance:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Business Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login latency</td>
+<td>&lt; 2 seconds</td>
+<td>Customer satisfaction</td>
+</tr>
+<tr>
+<td>Balance inquiry</td>
+<td>&lt; 500ms</td>
+<td>Core banking responsiveness</td>
+</tr>
+<tr>
+<td>Transfer initiation</td>
+<td>&lt; 1 second</td>
+<td>Transaction completion</td>
+</tr>
+<tr>
+<td>Statement generation</td>
+<td>&lt; 5 seconds</td>
+<td>Self-service adoption</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FinancialPerformanceMonitor:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Performance monitoring for financial systems with regulatory awareness.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, metrics_client, audit_logger):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.metrics <span class="op">=</span> metrics_client</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audit <span class="op">=</span> audit_logger</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sla_thresholds <span class="op">=</span> {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;trading&quot;</span>: {<span class="st">&quot;p99_latency_us&quot;</span>: <span class="dv">100</span>, <span class="st">&quot;availability&quot;</span>: <span class="fl">0.9999</span>},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;banking&quot;</span>: {<span class="st">&quot;p99_latency_ms&quot;</span>: <span class="dv">500</span>, <span class="st">&quot;availability&quot;</span>: <span class="fl">0.99999</span>},</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;payments&quot;</span>: {<span class="st">&quot;p99_latency_ms&quot;</span>: <span class="dv">100</span>, <span class="st">&quot;availability&quot;</span>: <span class="fl">0.999999</span>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> measure_transaction(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        transaction_type: <span class="bu">str</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        domain: <span class="bu">str</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        start_time_ns: <span class="bu">int</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">        Measure transaction performance with audit trail.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        end_time_ns <span class="op">=</span> time.time_ns()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        latency_us <span class="op">=</span> (end_time_ns <span class="op">-</span> start_time_ns) <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Record metric</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.metrics.histogram(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&quot;</span><span class="sc">{</span>domain<span class="sc">}</span><span class="ss">.transaction.latency&quot;</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            latency_us,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            tags<span class="op">=</span>{<span class="st">&quot;type&quot;</span>: transaction_type}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check SLA</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        threshold <span class="op">=</span> <span class="va">self</span>.sla_thresholds.get(domain, {})</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        sla_breach <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> domain <span class="op">==</span> <span class="st">&quot;trading&quot;</span>:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            sla_breach <span class="op">=</span> latency_us <span class="op">&gt;</span> threshold.get(<span class="st">&quot;p99_latency_us&quot;</span>, <span class="bu">float</span>(<span class="st">&quot;inf&quot;</span>))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            sla_breach <span class="op">=</span> latency_us <span class="op">/</span> <span class="dv">1000</span> <span class="op">&gt;</span> threshold.get(<span class="st">&quot;p99_latency_ms&quot;</span>, <span class="bu">float</span>(<span class="st">&quot;inf&quot;</span>))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Audit log for compliance</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audit.log({</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;event&quot;</span>: <span class="st">&quot;transaction_measured&quot;</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;transaction_type&quot;</span>: transaction_type,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;domain&quot;</span>: domain,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;latency_us&quot;</span>: latency_us,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sla_breach&quot;</span>: sla_breach,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;timestamp&quot;</span>: datetime.utcnow().isoformat()</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;latency_us&quot;</span>: latency_us,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;sla_breach&quot;</span>: sla_breach,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;threshold&quot;</span>: threshold</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        }</span></code></pre></div>
+<h3 id="operational-excellence-for-compliance">5.2.3 Operational
+Excellence for Compliance</h3>
+<p>Operational excellence in financial services centers on compliance
+and auditability:</p>
+<p><strong>Change Management Framework:</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 29%" />
+<col style="width: 27%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>Change Type</th>
+<th>Approval Required</th>
+<th>Testing Required</th>
+<th>Rollback Plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emergency fix</td>
+<td>1 approver + post-review</td>
+<td>Smoke tests</td>
+<td>Automated</td>
+</tr>
+<tr>
+<td>Standard change</td>
+<td>2 approvers</td>
+<td>Full regression</td>
+<td>Documented</td>
+</tr>
+<tr>
+<td>Major change</td>
+<td>CAB + compliance</td>
+<td>Full + penetration</td>
+<td>Rehearsed</td>
+</tr>
+<tr>
+<td>Infrastructure</td>
+<td>CAB + security + compliance</td>
+<td>Full + DR test</td>
+<td>Blue-green</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Audit Trail Requirements:</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ComplianceAuditLogger:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Immutable audit logging for financial compliance.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, storage_backend, encryption_key):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.storage <span class="op">=</span> storage_backend</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.encryption <span class="op">=</span> encryption_key</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hash_chain <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> log(<span class="va">self</span>, event: <span class="bu">dict</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Log event with cryptographic integrity.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns audit ID for reference.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add metadata</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        event[<span class="st">&quot;_audit_id&quot;</span>] <span class="op">=</span> <span class="bu">str</span>(uuid.uuid4())</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        event[<span class="st">&quot;_timestamp&quot;</span>] <span class="op">=</span> datetime.utcnow().isoformat()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        event[<span class="st">&quot;_source_ip&quot;</span>] <span class="op">=</span> <span class="va">self</span>._get_source_ip()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        event[<span class="st">&quot;_user_id&quot;</span>] <span class="op">=</span> <span class="va">self</span>._get_current_user()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create hash chain for tamper detection</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        event_json <span class="op">=</span> json.dumps(event, sort_keys<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        event_hash <span class="op">=</span> hashlib.sha256(event_json.encode()).hexdigest()</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.hash_chain:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            event[<span class="st">&quot;_previous_hash&quot;</span>] <span class="op">=</span> <span class="va">self</span>.hash_chain</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        event[<span class="st">&quot;_event_hash&quot;</span>] <span class="op">=</span> event_hash</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hash_chain <span class="op">=</span> event_hash</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encrypt sensitive fields</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        encrypted_event <span class="op">=</span> <span class="va">self</span>._encrypt_sensitive_fields(event)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Write to immutable storage</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.storage.append(encrypted_event)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> event[<span class="st">&quot;_audit_id&quot;</span>]</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> verify_integrity(<span class="va">self</span>, start_audit_id: <span class="bu">str</span>, end_audit_id: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">        Verify hash chain integrity for audit period.</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        events <span class="op">=</span> <span class="va">self</span>.storage.<span class="bu">range</span>(start_audit_id, end_audit_id)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        previous_hash <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> event <span class="kw">in</span> events:</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> previous_hash <span class="kw">and</span> event.get(<span class="st">&quot;_previous_hash&quot;</span>) <span class="op">!=</span> previous_hash:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Verify event hash</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>            event_copy <span class="op">=</span> {k: v <span class="cf">for</span> k, v <span class="kw">in</span> event.items() <span class="cf">if</span> <span class="kw">not</span> k.startswith(<span class="st">&quot;_&quot;</span>)}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>            computed_hash <span class="op">=</span> hashlib.sha256(</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>                json.dumps(event_copy, sort_keys<span class="op">=</span><span class="va">True</span>).encode()</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>            ).hexdigest()</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> computed_hash <span class="op">!=</span> event[<span class="st">&quot;_event_hash&quot;</span>]:</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            previous_hash <span class="op">=</span> event[<span class="st">&quot;_event_hash&quot;</span>]</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span></code></pre></div>
+<figure>
+<img src="../figures/fig_5_2_compliance_architecture.png"
+alt="Figure 5.2: Compliance Architecture" />
+<figcaption aria-hidden="true">Figure 5.2: Compliance
+Architecture</figcaption>
+</figure>
+<p><strong>Figure 5.2: Financial Services Compliance
+Architecture</strong></p>
+<h3 id="scalability-with-compliance">5.2.4 Scalability with
+Compliance</h3>
+<p>Scaling financial systems requires maintaining compliance at every
+scale:</p>
+<p><strong>Scaling Constraints:</strong></p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 44%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Impact on Scaling</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data sovereignty</td>
+<td>Cannot replicate across borders</td>
+<td>Regional deployments</td>
+</tr>
+<tr>
+<td>Audit requirements</td>
+<td>Every instance must log</td>
+<td>Centralized audit aggregation</td>
+</tr>
+<tr>
+<td>Encryption in transit</td>
+<td>Performance overhead</td>
+<td>Hardware acceleration</td>
+</tr>
+<tr>
+<td>Key management</td>
+<td>Keys cannot be shared</td>
+<td>Per-region key hierarchies</td>
+</tr>
+<tr>
+<td>Change control</td>
+<td>Cannot auto-scale freely</td>
+<td>Pre-approved capacity pools</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CompliantAutoScaler:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Auto-scaling with compliance guardrails.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, orchestrator, compliance_checker, audit_logger):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.orchestrator <span class="op">=</span> orchestrator</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.compliance <span class="op">=</span> compliance_checker</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audit <span class="op">=</span> audit_logger</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.approved_capacity_pool <span class="op">=</span> {}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> scale(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        service: <span class="bu">str</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        target_instances: <span class="bu">int</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        reason: <span class="bu">str</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">        Scale with compliance verification.</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        current <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.orchestrator.get_instance_count(service)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pre-flight compliance check</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        compliance_result <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.compliance.check_scaling(</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            service<span class="op">=</span>service,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            current<span class="op">=</span>current,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            target<span class="op">=</span>target_instances</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> compliance_result[<span class="st">&quot;approved&quot;</span>]:</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.audit.log({</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;event&quot;</span>: <span class="st">&quot;scaling_blocked&quot;</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;service&quot;</span>: service,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;reason&quot;</span>: compliance_result[<span class="st">&quot;reason&quot;</span>],</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;current&quot;</span>: current,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;requested&quot;</span>: target_instances</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {<span class="st">&quot;success&quot;</span>: <span class="va">False</span>, <span class="st">&quot;reason&quot;</span>: compliance_result[<span class="st">&quot;reason&quot;</span>]}</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check pre-approved capacity</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        available_capacity <span class="op">=</span> <span class="va">self</span>.approved_capacity_pool.get(service, <span class="dv">0</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> target_instances <span class="op">&gt;</span> current <span class="op">+</span> available_capacity:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Request emergency capacity approval</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>            approval <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>._request_emergency_approval(</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>                service, target_instances <span class="op">-</span> current <span class="op">-</span> available_capacity</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> approval[<span class="st">&quot;granted&quot;</span>]:</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> {<span class="st">&quot;success&quot;</span>: <span class="va">False</span>, <span class="st">&quot;reason&quot;</span>: <span class="st">&quot;capacity_not_approved&quot;</span>}</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Execute scaling</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.orchestrator.scale(service, target_instances)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Audit the scaling action</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audit.log({</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;event&quot;</span>: <span class="st">&quot;scaling_executed&quot;</span>,</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;service&quot;</span>: service,</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;previous&quot;</span>: current,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;target&quot;</span>: target_instances,</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;reason&quot;</span>: reason,</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;compliance_check_id&quot;</span>: compliance_result[<span class="st">&quot;check_id&quot;</span>]</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">&quot;success&quot;</span>: <span class="va">True</span>, <span class="st">&quot;new_count&quot;</span>: target_instances}</span></code></pre></div>
+<h3 id="economic-impact-in-regulated-environments">5.2.5 Economic Impact
+in Regulated Environments</h3>
+<p>Cost optimization in financial services must account for compliance
+overhead:</p>
+<p><strong>Total Cost Model:</strong></p>
+<pre><code>Financial TCO = Infrastructure + Compliance + Risk
+
+Where:
+  Infrastructure = Compute + Storage + Network + Licensing
+  Compliance = Audit systems + Security tools + Compliance staff + Certification
+  Risk = (Probability of breach × Cost) + (Probability of outage × Cost)</code></pre>
+<table>
+<thead>
+<tr>
+<th>Cost Component</th>
+<th>Typical % of IT Budget</th>
+<th>Optimization Potential</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Infrastructure</td>
+<td>40-50%</td>
+<td>20-30% through optimization</td>
+</tr>
+<tr>
+<td>Compliance tooling</td>
+<td>15-20%</td>
+<td>10-15% through automation</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>10-15%</td>
+<td>Limited (cannot reduce)</td>
+</tr>
+<tr>
+<td>Staff (compliance)</td>
+<td>15-20%</td>
+<td>30-40% through automation</td>
+</tr>
+<tr>
+<td>Audit/certification</td>
+<td>5-10%</td>
+<td>20-30% through continuous compliance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="low-latency-trading-infrastructure">5.3 Low-Latency Trading
+Infrastructure</h2>
+<h3 id="the-latency-arms-race">5.3.1 The Latency Arms Race</h3>
+<p>Modern trading systems measure latency in microseconds and
+nanoseconds:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Typical Latency</th>
+<th>Optimized Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network (co-located)</td>
+<td>50-100 microseconds</td>
+<td>5-10 microseconds</td>
+</tr>
+<tr>
+<td>Application logic</td>
+<td>100-500 microseconds</td>
+<td>10-50 microseconds</td>
+</tr>
+<tr>
+<td>Market data parsing</td>
+<td>10-50 microseconds</td>
+<td>1-5 microseconds</td>
+</tr>
+<tr>
+<td>Order validation</td>
+<td>20-100 microseconds</td>
+<td>5-20 microseconds</td>
+</tr>
+<tr>
+<td>Risk check</td>
+<td>50-200 microseconds</td>
+<td>10-50 microseconds</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="../figures/fig_5_3_latency_breakdown.png"
+alt="Figure 5.3: Trading System Latency Breakdown" />
+<figcaption aria-hidden="true">Figure 5.3: Trading System Latency
+Breakdown</figcaption>
+</figure>
+<p><strong>Figure 5.3: Trading System Latency Components</strong></p>
+<h3 id="hardware-software-co-design">5.3.2 Hardware-Software
+Co-Design</h3>
+<p>Ultra-low latency requires thinking about hardware and software
+together:</p>
+<p><strong>Hardware Optimizations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Latency Reduction</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPGA-based processing</td>
+<td>10-100x</td>
+<td>Market data, order routing</td>
+</tr>
+<tr>
+<td>Kernel bypass (DPDK)</td>
+<td>5-10x</td>
+<td>Network stack</td>
+</tr>
+<tr>
+<td>CPU pinning</td>
+<td>2-5x</td>
+<td>Eliminate context switches</td>
+</tr>
+<tr>
+<td>NUMA awareness</td>
+<td>2-3x</td>
+<td>Memory locality</td>
+</tr>
+<tr>
+<td>SR-IOV</td>
+<td>3-5x</td>
+<td>Direct NIC access</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Software Architecture for Low Latency:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LowLatencyOrderRouter:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Order routing optimized for microsecond latency.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Design principles:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - Lock-free data structures</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - Pre-allocated memory pools</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - Zero-copy message passing</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    - Busy-polling (no blocking)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pre-allocate order pool to avoid allocation latency</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.order_pool <span class="op">=</span> <span class="va">self</span>._preallocate_orders(config.pool_size)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.order_pool_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lock-free queue for incoming orders</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.incoming_queue <span class="op">=</span> SPSCQueue(config.queue_size)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pre-computed routing tables</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.routing_table <span class="op">=</span> <span class="va">self</span>._build_routing_table(config.venues)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pin to specific CPU core</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._pin_to_core(config.cpu_core)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> route_order(<span class="va">self</span>, order_data: <span class="bu">bytes</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">        Route order with minimal latency.</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns order ID.</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get pre-allocated order (no malloc)</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        order <span class="op">=</span> <span class="va">self</span>.order_pool[<span class="va">self</span>.order_pool_index]</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.order_pool_index <span class="op">=</span> (<span class="va">self</span>.order_pool_index <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(<span class="va">self</span>.order_pool)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Parse directly into pre-allocated structure (zero-copy)</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        order.parse_from_bytes(order_data)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lookup routing (pre-computed, O(1))</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        venue <span class="op">=</span> <span class="va">self</span>.routing_table[order.symbol_id]</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Send via kernel bypass</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        venue.send_order_dpdk(order)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> order.order_id</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _pin_to_core(<span class="va">self</span>, core_id: <span class="bu">int</span>):</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Pin this thread to a specific CPU core.&quot;&quot;&quot;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        os.sched_setaffinity(<span class="dv">0</span>, {core_id})</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set real-time scheduling priority</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        param <span class="op">=</span> os.sched_param(os.sched_get_priority_max(os.SCHED_FIFO))</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        os.sched_setscheduler(<span class="dv">0</span>, os.SCHED_FIFO, param)</span></code></pre></div>
+<h3 id="market-data-infrastructure">5.3.3 Market Data
+Infrastructure</h3>
+<p>Processing market data at scale requires specialized
+infrastructure:</p>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Volume</th>
+<th>Processing Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level 1 quotes</td>
+<td>1-5M messages/sec</td>
+<td>Real-time display</td>
+</tr>
+<tr>
+<td>Level 2 depth</td>
+<td>10-50M messages/sec</td>
+<td>Order book reconstruction</td>
+</tr>
+<tr>
+<td>Trade prints</td>
+<td>500K-2M messages/sec</td>
+<td>Trade analytics</td>
+</tr>
+<tr>
+<td>Options chains</td>
+<td>100M+ symbols</td>
+<td>Greeks calculation</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MarketDataProcessor:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    High-performance market data processing.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parser <span class="op">=</span> FPGAMarketDataParser(config.fpga_device)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.book_builder <span class="op">=</span> LockFreeOrderBook()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.subscribers <span class="op">=</span> SubscriberRegistry()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> process_feed(<span class="va">self</span>, raw_data: <span class="bu">memoryview</span>):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Process market data with FPGA acceleration.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Uses memory-mapped I/O for zero-copy processing.</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># FPGA parses and normalizes in hardware</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        parsed_messages <span class="op">=</span> <span class="va">self</span>.parser.parse_batch(raw_data)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> msg <span class="kw">in</span> parsed_messages:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> msg.<span class="bu">type</span> <span class="op">==</span> MessageType.QUOTE:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._handle_quote(msg)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> msg.<span class="bu">type</span> <span class="op">==</span> MessageType.TRADE:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._handle_trade(msg)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> msg.<span class="bu">type</span> <span class="op">==</span> MessageType.DEPTH:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._handle_depth_update(msg)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _handle_depth_update(<span class="va">self</span>, msg):</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Update order book and notify subscribers.&quot;&quot;&quot;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lock-free update</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.book_builder.apply_update(</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            msg.symbol,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            msg.side,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            msg.price,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            msg.quantity</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fan-out to subscribers (also lock-free)</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.subscribers.notify(msg.symbol, <span class="va">self</span>.book_builder.get_book(msg.symbol))</span></code></pre></div>
+<h2 id="banking-infrastructure-optimization">5.4 Banking Infrastructure
+Optimization</h2>
+<h3 id="core-banking-architecture">5.4.1 Core Banking Architecture</h3>
+<p>Modern core banking systems must balance legacy integration with
+modern performance:</p>
+<figure>
+<img src="../figures/fig_5_4_core_banking.png"
+alt="Figure 5.4: Core Banking Architecture" />
+<figcaption aria-hidden="true">Figure 5.4: Core Banking
+Architecture</figcaption>
+</figure>
+<p><strong>Figure 5.4: Modern Core Banking Architecture
+Layers</strong></p>
+<p><strong>Architecture Layers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Function</th>
+<th>Technology Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channel</td>
+<td>Customer touchpoints</td>
+<td>Mobile, web, branch, ATM</td>
+</tr>
+<tr>
+<td>API Gateway</td>
+<td>Security, routing</td>
+<td>Kong, Apigee, custom</td>
+</tr>
+<tr>
+<td>Microservices</td>
+<td>Business logic</td>
+<td>Java, Go, .NET</td>
+</tr>
+<tr>
+<td>Core Banking</td>
+<td>Account management</td>
+<td>Temenos, Finacle, custom</td>
+</tr>
+<tr>
+<td>Data Layer</td>
+<td>Persistence</td>
+<td>Oracle, PostgreSQL, distributed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transaction-processing">5.4.2 Transaction Processing</h3>
+<p>Financial transaction processing requires ACID guarantees with high
+throughput:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransactionProcessor:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    ACID-compliant transaction processing.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, db_pool, audit_logger, fraud_detector):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.db <span class="op">=</span> db_pool</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.audit <span class="op">=</span> audit_logger</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fraud <span class="op">=</span> fraud_detector</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> process_transfer(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        from_account: <span class="bu">str</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        to_account: <span class="bu">str</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        amount: Decimal,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        currency: <span class="bu">str</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        idempotency_key: <span class="bu">str</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">        Process fund transfer with full compliance.</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check idempotency (prevent duplicate processing)</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        existing <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>._check_idempotency(idempotency_key)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> existing:</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> existing</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Pre-transaction fraud check</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        fraud_result <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.fraud.check_transaction({</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;from&quot;</span>: from_account,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;to&quot;</span>: to_account,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;amount&quot;</span>: <span class="bu">float</span>(amount),</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;currency&quot;</span>: currency</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> fraud_result[<span class="st">&quot;blocked&quot;</span>]:</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.audit.log({</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;event&quot;</span>: <span class="st">&quot;transaction_blocked&quot;</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;reason&quot;</span>: <span class="st">&quot;fraud_detection&quot;</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;details&quot;</span>: fraud_result</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {<span class="st">&quot;success&quot;</span>: <span class="va">False</span>, <span class="st">&quot;reason&quot;</span>: <span class="st">&quot;transaction_blocked&quot;</span>}</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Execute with distributed transaction</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">async</span> <span class="cf">with</span> <span class="va">self</span>.db.transaction() <span class="im">as</span> txn:</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Debit source account</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>                debit_result <span class="op">=</span> <span class="cf">await</span> txn.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="st">                    UPDATE accounts</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="st">                    SET balance = balance - $1,</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="st">                        last_transaction = NOW()</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="st">                    WHERE account_id = $2</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="st">                    AND balance &gt;= $1</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="st">                    AND status = &#39;active&#39;</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="st">                    RETURNING balance</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="st">                &quot;&quot;&quot;</span>, amount, from_account)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> debit_result:</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">raise</span> InsufficientFundsError()</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Credit destination account</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>                <span class="cf">await</span> txn.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="st">                    UPDATE accounts</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="st">                    SET balance = balance + $1,</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="st">                        last_transaction = NOW()</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="st">                    WHERE account_id = $2</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="st">                    AND status = &#39;active&#39;</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="st">                &quot;&quot;&quot;</span>, amount, to_account)</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Record transaction</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>                txn_id <span class="op">=</span> <span class="cf">await</span> txn.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="st">                    INSERT INTO transactions</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="st">                    (from_account, to_account, amount, currency, status, idempotency_key)</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="st">                    VALUES ($1, $2, $3, $4, &#39;completed&#39;, $5)</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="st">                    RETURNING transaction_id</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="st">                &quot;&quot;&quot;</span>, from_account, to_account, amount, currency, idempotency_key)</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Commit</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>                <span class="cf">await</span> txn.commit()</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Audit log (after commit for consistency)</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.audit.log({</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;event&quot;</span>: <span class="st">&quot;transfer_completed&quot;</span>,</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;transaction_id&quot;</span>: txn_id,</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;from&quot;</span>: from_account,</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;to&quot;</span>: to_account,</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;amount&quot;</span>: <span class="bu">str</span>(amount),</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;currency&quot;</span>: currency</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> {<span class="st">&quot;success&quot;</span>: <span class="va">True</span>, <span class="st">&quot;transaction_id&quot;</span>: txn_id}</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>                <span class="cf">await</span> txn.rollback()</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.audit.log({</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;event&quot;</span>: <span class="st">&quot;transfer_failed&quot;</span>,</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;error&quot;</span>: <span class="bu">str</span>(e),</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;from&quot;</span>: from_account,</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;to&quot;</span>: to_account</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span></span></code></pre></div>
+<h3 id="high-availability-patterns">5.4.3 High Availability
+Patterns</h3>
+<p>Banking systems require extreme availability:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>RTO</th>
+<th>RPO</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active-Active</td>
+<td>0</td>
+<td>0</td>
+<td>Payment processing</td>
+</tr>
+<tr>
+<td>Active-Passive (sync)</td>
+<td>&lt; 1 min</td>
+<td>0</td>
+<td>Core banking</td>
+</tr>
+<tr>
+<td>Active-Passive (async)</td>
+<td>&lt; 5 min</td>
+<td>&lt; 1 min</td>
+<td>Batch systems</td>
+</tr>
+<tr>
+<td>Multi-region active</td>
+<td>0</td>
+<td>&lt; 1 sec</td>
+<td>Global banking</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Active-Active Implementation:</strong></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ActiveActiveRouter:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Route requests across active-active data centers.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dc_configs: <span class="bu">list</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.datacenters <span class="op">=</span> [DataCenter(cfg) <span class="cf">for</span> cfg <span class="kw">in</span> dc_configs]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.consistency_checker <span class="op">=</span> ConsistencyChecker()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> route_request(<span class="va">self</span>, request: Request) <span class="op">-&gt;</span> Response:</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Route with conflict detection and resolution.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Determine primary DC based on account affinity</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        primary_dc <span class="op">=</span> <span class="va">self</span>._get_affinity_dc(request.account_id)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        secondary_dc <span class="op">=</span> <span class="va">self</span>._get_secondary_dc(primary_dc)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Execute on primary</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="cf">await</span> primary_dc.execute(request)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Async replicate to secondary</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>            asyncio.create_task(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>._replicate_to_secondary(secondary_dc, request, response)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> response</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> DataCenterUnavailable:</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Failover to secondary</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.audit.log({</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;event&quot;</span>: <span class="st">&quot;dc_failover&quot;</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;primary&quot;</span>: primary_dc.name,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;secondary&quot;</span>: secondary_dc.name</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="cf">await</span> secondary_dc.execute(request)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Mark for reconciliation when primary recovers</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">await</span> <span class="va">self</span>._mark_for_reconciliation(primary_dc, request)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> response</span></code></pre></div>
+<h2 id="real-time-risk-management">5.5 Real-Time Risk Management</h2>
+<h3 id="risk-calculation-infrastructure">5.5.1 Risk Calculation
+Infrastructure</h3>
+<p>Real-time risk management requires massive computational power:</p>
+<table>
+<thead>
+<tr>
+<th>Risk Type</th>
+<th>Calculation Complexity</th>
+<th>Latency Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-trade risk</td>
+<td>O(1) lookups</td>
+<td>&lt; 1 millisecond</td>
+</tr>
+<tr>
+<td>Position risk</td>
+<td>O(n) portfolio</td>
+<td>&lt; 100 milliseconds</td>
+</tr>
+<tr>
+<td>VaR (Value at Risk)</td>
+<td>O(n*m) simulations</td>
+<td>&lt; 5 seconds</td>
+</tr>
+<tr>
+<td>Stress testing</td>
+<td>O(n<em>m</em>s) scenarios</td>
+<td>Minutes to hours</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="../figures/fig_5_5_risk_architecture.png"
+alt="Figure 5.5: Risk Management Architecture" />
+<figcaption aria-hidden="true">Figure 5.5: Risk Management
+Architecture</figcaption>
+</figure>
+<p><strong>Figure 5.5: Real-Time Risk Management
+Infrastructure</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RealTimeRiskEngine:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Real-time risk calculation with tiered architecture.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pre_trade_cache <span class="op">=</span> PreTradeRiskCache()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position_service <span class="op">=</span> PositionService()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.var_calculator <span class="op">=</span> VaRCalculator(config.gpu_cluster)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> check_pre_trade_risk(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        order: Order</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> RiskCheckResult:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Pre-trade risk check in &lt; 1ms.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Uses pre-computed limits and cached positions.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get cached limits (O(1) lookup)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        limits <span class="op">=</span> <span class="va">self</span>.pre_trade_cache.get_limits(order.trader_id, order.symbol)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get current position (O(1) lookup)</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        position <span class="op">=</span> <span class="va">self</span>.pre_trade_cache.get_position(order.trader_id, order.symbol)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate exposure</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        new_exposure <span class="op">=</span> position.quantity <span class="op">+</span> order.quantity</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        new_notional <span class="op">=</span> new_exposure <span class="op">*</span> order.price</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check limits</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        checks <span class="op">=</span> [</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>            (<span class="st">&quot;position_limit&quot;</span>, <span class="bu">abs</span>(new_exposure) <span class="op">&lt;=</span> limits.max_position),</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            (<span class="st">&quot;notional_limit&quot;</span>, <span class="bu">abs</span>(new_notional) <span class="op">&lt;=</span> limits.max_notional),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>            (<span class="st">&quot;order_size&quot;</span>, order.quantity <span class="op">&lt;=</span> limits.max_order_size),</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>            (<span class="st">&quot;loss_limit&quot;</span>, position.unrealized_pnl <span class="op">&gt;</span> limits.max_loss)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        failed_checks <span class="op">=</span> [name <span class="cf">for</span> name, passed <span class="kw">in</span> checks <span class="cf">if</span> <span class="kw">not</span> passed]</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> RiskCheckResult(</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>            approved<span class="op">=</span><span class="bu">len</span>(failed_checks) <span class="op">==</span> <span class="dv">0</span>,</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>            failed_checks<span class="op">=</span>failed_checks,</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>            latency_us<span class="op">=</span><span class="va">self</span>._get_elapsed_us()</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="kw">def</span> calculate_portfolio_var(</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        portfolio_id: <span class="bu">str</span>,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        confidence: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.99</span>,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        horizon_days: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> VaRResult:</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co">        Calculate VaR using GPU-accelerated Monte Carlo.</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get portfolio positions</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>        positions <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.position_service.get_portfolio(portfolio_id)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get market data and correlations</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>        market_data <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>._get_market_data(positions)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>        correlation_matrix <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>._get_correlations(positions)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># GPU-accelerated Monte Carlo simulation</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>        simulations <span class="op">=</span> <span class="cf">await</span> <span class="va">self</span>.var_calculator.run_monte_carlo(</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>            positions<span class="op">=</span>positions,</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>            market_data<span class="op">=</span>market_data,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>            correlations<span class="op">=</span>correlation_matrix,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>            num_simulations<span class="op">=</span><span class="dv">100000</span>,</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>            horizon_days<span class="op">=</span>horizon_days</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate VaR from simulation results</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>        var <span class="op">=</span> np.percentile(simulations, (<span class="dv">1</span> <span class="op">-</span> confidence) <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> VaRResult(</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>            var<span class="op">=</span>var,</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>            confidence<span class="op">=</span>confidence,</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>            horizon_days<span class="op">=</span>horizon_days,</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>            num_simulations<span class="op">=</span><span class="dv">100000</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<h2 id="case-study-digital-bank-infrastructure-modernization">5.6 Case
+Study: Digital Bank Infrastructure Modernization</h2>
+<h3 id="scenario">5.6.1 Scenario</h3>
+<p>A traditional bank launching a digital-first subsidiary with
+requirements:</p>
+<ul>
+<li><strong>Target scale</strong>: 5M customers in 3 years</li>
+<li><strong>Transaction volume</strong>: 100M transactions/month</li>
+<li><strong>Availability</strong>: 99.99% for customer-facing
+systems</li>
+<li><strong>Compliance</strong>: Full regulatory compliance from day
+one</li>
+<li><strong>Cost</strong>: 50% lower cost-to-serve than parent bank</li>
+</ul>
+<h3 id="architecture-decisions">5.6.2 Architecture Decisions</h3>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 31%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Component</th>
+<th>Decision</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud strategy</td>
+<td>Hybrid (regulated workloads on-prem)</td>
+<td>Compliance + flexibility</td>
+</tr>
+<tr>
+<td>Core banking</td>
+<td>Cloud-native (Thought Machine)</td>
+<td>API-first, scalable</td>
+</tr>
+<tr>
+<td>Data platform</td>
+<td>Snowflake + Kafka</td>
+<td>Real-time + analytics</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Zero-trust architecture</td>
+<td>Modern threat landscape</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>OpenTelemetry + Datadog</td>
+<td>Full-stack visibility</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results">5.6.3 Results</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Traditional Bank</th>
+<th>Digital Bank</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account opening time</td>
+<td>5-7 days</td>
+<td>5 minutes</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>Transaction latency (P99)</td>
+<td>3 seconds</td>
+<td>200ms</td>
+<td>93%</td>
+</tr>
+<tr>
+<td>Cost per transaction</td>
+<td>$0.50</td>
+<td>$0.08</td>
+<td>84%</td>
+</tr>
+<tr>
+<td>Deployment frequency</td>
+<td>Monthly</td>
+<td>Daily</td>
+<td>30x</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>99.9%</td>
+<td>99.99%</td>
+<td>10x fewer outages</td>
+</tr>
+<tr>
+<td>Compliance findings</td>
+<td>15/year</td>
+<td>2/year</td>
+<td>87%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PROSE Score Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Traditional</th>
+<th>Digital</th>
+<th>Weighted Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Performance</td>
+<td>55</td>
+<td>88</td>
+<td>+8.25</td>
+</tr>
+<tr>
+<td>Resource Optimization</td>
+<td>40</td>
+<td>82</td>
+<td>+6.30</td>
+</tr>
+<tr>
+<td>Operational Excellence</td>
+<td>50</td>
+<td>90</td>
+<td>+12.00</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>45</td>
+<td>85</td>
+<td>+6.00</td>
+</tr>
+<tr>
+<td>Economic Impact</td>
+<td>35</td>
+<td>88</td>
+<td>+7.95</td>
+</tr>
+<tr>
+<td><strong>Weighted Total</strong></td>
+<td><strong>46</strong></td>
+<td><strong>87</strong></td>
+<td><strong>+40.5</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ol type="1">
+<li><p><strong>Compliance is non-negotiable</strong> - Every
+optimization must maintain full regulatory compliance with complete
+audit trails</p></li>
+<li><p><strong>Latency requirements vary by domain</strong> - Trading
+needs microseconds; banking needs sub-second; batch can tolerate
+minutes</p></li>
+<li><p><strong>Zero data loss is achievable</strong> - Synchronous
+replication and proper transaction design enable RPO=0</p></li>
+<li><p><strong>Automation enables compliance</strong> - Continuous
+compliance checking reduces audit findings and manual overhead</p></li>
+<li><p><strong>Hardware-software co-design</strong> - Ultra-low latency
+requires thinking about FPGA, kernel bypass, and CPU affinity</p></li>
+<li><p><strong>Active-active is complex but necessary</strong> -
+Multi-region active deployments require careful conflict
+resolution</p></li>
+</ol>
+<h2 id="references">References</h2>
+<ol type="1">
+<li>Harris, L. “Trading and Exchanges: Market Microstructure for
+Practitioners.” Oxford University Press (2002)</li>
+<li>Basel Committee. “Principles for Effective Risk Data Aggregation.”
+BIS (2013)</li>
+<li>PCI Security Standards Council. “PCI DSS Requirements and Security
+Assessment Procedures.” (2022)</li>
+<li>AWS. “Financial Services Industry Lens - AWS Well-Architected
+Framework.” (2023)</li>
+<li>Aldridge, I. “High-Frequency Trading: A Practical Guide.” Wiley
+(2013)</li>
+</ol>
+<hr />
+<p><em>Next Chapter: Healthcare Infrastructure Optimization</em></p>
+</body>
+</html>
